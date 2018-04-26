@@ -1,7 +1,7 @@
 # Personal.xlsb
 A collection of utility functions of Excel plugin. 
 
-![Ribbon](Ribbon.PNG)
+![Ribbon](Image/Ribbon.PNG)
 
 ## Range Alignment Tool
 A tool to align two ranges based on given columns. This impliment a full join function in any two given excel range.
