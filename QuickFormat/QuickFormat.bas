@@ -5,6 +5,8 @@ Sub QuickFormat()
     Set rng = Selection
     Set sh = Application.ActiveSheet
     
+    Set rng = Intersect(rng, sh.UsedRange)
+    
     If rng.Columns.Count = 0 Or rng.Rows.Count <= 1 Then
         Set rng = sh.UsedRange
     End If
@@ -12,6 +14,7 @@ Sub QuickFormat()
     'auto width
     rng.Columns.EntireColumn.AutoFit
     rng.Font.Size = 10
+    
     ' border
     With rng.borders(xlEdgeLeft)
         .LineStyle = xlContinuous
@@ -25,13 +28,14 @@ Sub QuickFormat()
     With rng.borders(xlEdgeRight)
         .LineStyle = xlContinuous
     End With
-    With Selection.borders(xlInsideVertical)
+    With rng.borders(xlInsideVertical)
         .LineStyle = xlContinuous
     End With
-    With Selection.borders(xlInsideHorizontal)
+    With rng.borders(xlInsideHorizontal)
         .LineStyle = xlContinuous
     End With
     Selection.Font.Size = 10
+    
     'format headers
     Dim header As Range
     Set header = rng.Rows(1)
@@ -87,6 +91,9 @@ EndOfI:
         rng.Columns(j).NumberFormat = "mm/dd/yyyy"
     End If
     Next j
+    
+    'Replace null values with blank cell
+    rng.Replace "NULL", ""
     
 End Sub
 
