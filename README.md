@@ -4,16 +4,18 @@ A collection of utility functions of Excel plugin.
 ![Ribbon](Image/Ribbon.PNG)
 
 ## Range Alignment Tool
-A tool to align two ranges based on given columns. This impliment a full join function in any two given excel range.
+A tool to align two ranges based on given columns. This impliments a full join function basing on a single column in any two given excel range.
 To use this tool, import the RangeAlignmentTool.frm, RangeAlignmentTool.frx, and AlignTwoBlockBasedonGivenRange.bas
 
 ## Quick Format Tool
-A tool quickly format a given range. If no range is selected, it will try to guess the given range. If the selected range contains infinit rows or columns, it will fail (to be fixed).
-* It try to guess dates
-* It try to guess percentage values but not very good at it
+A tool quickly formats a given range. If no range is selected, it will format the used range.
+* It tries to guess dates
+* It tries to guess percentage values but not very good at it
+* It assumes there is an header
+* It replaces NULL with blank string
 
 ## Merge Selected Range Tool
-It merges cells (row-wise) if they contains the same values. It is useful when copied data from database with the first several columns are sorted catagorical values.
+It merges cells (row-wise) if they contains the same value. It is useful when copied data from database with the first several columns are sorted catagorical values.
 
 ## Insert Performance Table (unfinished)
 A tool to quickly convert a monthly performance table column to a presentable table
