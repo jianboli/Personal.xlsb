@@ -20,5 +20,7 @@ It merges cells (row-wise) if they contains the same value. It is useful when co
 ## Insert Performance Table
 A tool to quickly convert a monthly performance table column to a presentable table
 ![Insert Table](Image/InsertTable.PNG)
+
 The inserted tabel looks like this:
+
 ![Inserted Table](Image/InsertedTable.PNG)
