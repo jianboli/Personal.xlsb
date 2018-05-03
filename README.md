@@ -17,5 +17,8 @@ A tool quickly formats a given range. If no range is selected, it will format th
 ## Merge Selected Range Tool
 It merges cells (row-wise) if they contains the same value. It is useful when copied data from database with the first several columns are sorted catagorical values.
 
-## Insert Performance Table (unfinished)
+## Insert Performance Table
 A tool to quickly convert a monthly performance table column to a presentable table
+![Insert Table](Image/InsertTable.PNG)
+The inserted tabel looks like this:
+![Inserted Table](Image/InsertedTable.PNG)
