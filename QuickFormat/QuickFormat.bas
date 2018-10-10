@@ -6,8 +6,9 @@ Sub QuickFormat()
     Set sh = Application.ActiveSheet
     
     Set rng = Intersect(rng, sh.UsedRange)
-    
-    If rng.Columns.Count = 0 Or rng.Rows.Count <= 1 Then
+    If rng Is Nothing Then
+        Set rng = sh.UsedRange
+    ElseIf rng.Columns.Count = 0 Or rng.Rows.Count <= 1 Then
         Set rng = sh.UsedRange
     End If
     
@@ -58,7 +59,7 @@ Sub QuickFormat()
     rng.NumberFormat = "_(* #,##0_);_(* (#,##0);_(* ""-""??_);_(@_)"
 
     ' check if it the column be percentage
-    Dim i As Integer, j As Integer
+    Dim i As Long, j As Long
     
     For j = 1 To rng.Columns.Count
         Dim possiblePercentage As Boolean
@@ -73,12 +74,11 @@ Sub QuickFormat()
                 GoTo EndOfI
             End If
         
-            If Abs(rng.Cells(i, j).Value) > 10 Then
+            If Not IsEmpty(rng.Cells(i, j)) And Abs(rng.Cells(i, j).Value) > 10 Then
                 possiblePercentage = False
             End If
             
-            If rng.Cells(i, j).Value < 29221 _
-                Or rng.Cells(i, j).Value > 54789 Then  '1980-1-1 to 2050-1-1
+            If Not IsEmpty(rng.Cells(i, j)) And (rng.Cells(i, j).Value < 29221 Or rng.Cells(i, j).Value > 54789) Then   '1980-1-1 to 2050-1-1
                 possibleDate = False
             End If
         Next i
@@ -93,7 +93,16 @@ EndOfI:
     Next j
     
     'Replace null values with blank cell
+    rng.Replace "[NULL]", ""
     rng.Replace "NULL", ""
+    
+    ' Application.Goto rng.Cells(1, 1), True
+    ' With ActiveWindow
+    '     If .FreezePanes Then .FreezePanes = False
+    '     .SplitColumn = 0
+    '     .SplitRow = 1
+    '     .FreezePanes = True
+    'End With
     
 End Sub
 
